@@ -38,8 +38,8 @@ func parseLine(line string) int {
       current = append(current, int(c))
     }
   }
-  if len(current) == 2 {
-    return 10 * current[0] + current[1]
+  if len(current) >= 2 {
+    return 10 * current[0] + current[len(current) - 1]
   } else {
     return 0
   }
