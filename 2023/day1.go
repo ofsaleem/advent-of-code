@@ -2,6 +2,7 @@ package main
 
 import (
   "os"
+  "fmt"
   "bufio"
   "unicode"
 )
@@ -32,13 +33,15 @@ func parseFile(filename string) []string {
 }
 
 func parseLine(line string) int {
+  print(line, " ")
   var current []int
   for _, c := range line {
-    if unicode.IsDigit(c) { 
-      current = append(current, int(c))
+    if unicode.IsDigit(c) {
+      current = append(current, int(c - '0'))
     }
   }
   if len(current) >= 2 {
+    fmt.Println(current, "\n")
     return 10 * current[0] + current[len(current) - 1]
   } else {
     return 0
