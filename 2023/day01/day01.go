@@ -32,26 +32,29 @@ func parseFile(filename string) []string {
 }
 
 func parseLine(line string) int {
-  var current []int
-  for _, c := range line {
-    if unicode.IsDigit(c) {
-      current = append(current, int(c - '0'))
+  numMap := map[string]int{"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, 
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "1": 1, "2": 2, "3": 3, "4": 4,
+    "5": 5, "6": 6, "7": 7, "8": 8, "9": 9}
+  min := [2]int{65535, 0}
+  max := [2]int{0, 0}
+  for str, int := range numMap {
+    if strings.Contains(line, str) {
+      if min[0] >= strings.Index(line, str) {
+        min[0] = strings.Index(line, str)
+        min[1] = int
+    }
+    if max[0] < strings.Index(line, str) {
+      max[0] = strings.Index(line, str)
+      max[1] = int
     }
   }
-  
-  var numMap = make(map[string]int)
-  var min [2]int {0, "zero"}
-  var max [2]int {65535, "zero"}
-  numbers := []string {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-  "1", "2", "3", "4", "5", "6", "7", "8", "9"}
-  for _, num := range numbers {
-    if strings.Contains(line, num) {
-      if min[0] >= strings.Index(line, num) {
-        min[0] = strings.Index(line, num)
-        min[1] = unicode.Number
-      }
+    if min[0] == max[0] {
+      return min[1]
+    } else if min[1] != 0 && max[1] != 0 {
+      return 10 * min[1] + max[1]
+    } else {
+      return min[1]
     }
-  }
 }
 
 func calcValue(inputs []int) int {
