@@ -44,7 +44,7 @@ func parseLine(line string) int {
         min[0] = strings.Index(line, str)
         min[1] = int
       }
-      if max[0] < strings.LastIndex(line, str) {
+      if max[0] <= strings.LastIndex(line, str) {
         max[0] = strings.LastIndex(line, str)
         max[1] = int
       }
