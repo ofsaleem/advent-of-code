@@ -12,7 +12,7 @@ func main() {
   for _, line := range lines {
     total += parseLine(line)
   }
-  print(total)
+  print(total, "\n")
 }
 
 func parseFile(filename string) []string {
