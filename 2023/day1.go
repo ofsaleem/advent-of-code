@@ -32,11 +32,15 @@ func parseFile(filename string) []string {
 }
 
 func parseLine(line string) int {
-  var total int
+  var current []int
   for _, c := range line {
     if unicode.IsDigit(c) { 
-      total += int(c)
+      current = append(current, int(c))
     }
   }
-  return total
+  if len(current) == 2 {
+    return 10 * current[0] + current[1]
+  } else {
+    return 0
+  }
 }
