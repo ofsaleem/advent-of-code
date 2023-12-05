@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-  lines := parseFile("./probleminput.txt")
+  lines := parseFile("./testinput.txt")
   var total int
   for _, line := range lines {
     total += parseLine(line)
@@ -32,6 +32,7 @@ func parseFile(filename string) []string {
 }
 
 func parseLine(line string) int {
+  print(line, "\n")
   numMap := map[string]int{"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, 
     "six": 6, "seven": 7, "eight": 8, "nine": 9, "1": 1, "2": 2, "3": 3, "4": 4,
     "5": 5, "6": 6, "7": 7, "8": 8, "9": 9}
@@ -49,10 +50,10 @@ func parseLine(line string) int {
       }
     }
   }
-  if min[0] == max[0] {
-    return min[1]
-  } else if min[1] != 0 && max[1] != 0 {
-    return 10 * min[1] + max[1]
+  if min[1] != 0 && max[1] != 0 {
+    val := 10 * min[1] + max[1]
+    print(val, "\n")
+    return val
   } else {
     return min[1]
   }
