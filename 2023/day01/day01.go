@@ -3,7 +3,7 @@ package main
 import (
   "os"
   "bufio"
-  "unicode"
+  "strings"
 )
 
 func main() {
@@ -42,26 +42,19 @@ func parseLine(line string) int {
       if min[0] >= strings.Index(line, str) {
         min[0] = strings.Index(line, str)
         min[1] = int
-    }
-    if max[0] < strings.Index(line, str) {
-      max[0] = strings.Index(line, str)
-      max[1] = int
+      }
+      if max[0] < strings.Index(line, str) {
+        max[0] = strings.Index(line, str)
+        max[1] = int
+      }
     }
   }
-    if min[0] == max[0] {
-      return min[1]
-    } else if min[1] != 0 && max[1] != 0 {
-      return 10 * min[1] + max[1]
-    } else {
-      return min[1]
-    }
+  if min[0] == max[0] {
+    return min[1]
+  } else if min[1] != 0 && max[1] != 0 {
+    return 10 * min[1] + max[1]
+  } else {
+    return min[1]
+  }
 }
 
-func calcValue(inputs []int) int {
-  if len(inputs) >= 1 {
-    val := 10 * inputs[0] + inputs[len(inputs) - 1]
-    return val
-  } else {
-    return 0
-  }
-}
